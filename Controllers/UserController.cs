@@ -28,10 +28,10 @@ namespace LoginAPI.Controllers
             return _mapper.Map<List<ReadUserDTO>>(_userContext.Usuarios);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult RecuperaUsuarioPorID(int id)
+        [HttpGet("{cpf}")]
+        public IActionResult RecuperaUsuarioPorID(string cpf)
         {
-            var user = _userContext.Usuarios.FirstOrDefault(usr => usr.Id == id);
+            var user = _userContext.Usuarios.FirstOrDefault(usr => usr.CPF == cpf);
 
             if (user == null) return NotFound();
 
@@ -44,7 +44,13 @@ namespace LoginAPI.Controllers
         [HttpPost]
         public IActionResult CadastrarUser([FromBody] CreateUserDTO userDTO)
         {
-            User user = _mapper.Map<User>(userDTO); // mapeia user para DTO
+            // verifica se usuario existe por meio do cpf
+            var userExist = _userContext.Usuarios.FirstOrDefault(usr => usr.CPF ==  userDTO.CPF);
+
+            if (userExist != null) return Conflict("CPF já está em uso.");
+
+            // caso o usuario não exista, cria o mesmo
+            User user = _mapper.Map<User>(userDTO); // mapeia user para DTO 
 
             _userContext.Usuarios.Add(user);
             _userContext.SaveChanges();
