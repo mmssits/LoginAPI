@@ -11,6 +11,8 @@ Esta API permite gerencia o login de usuários, listando os usuários cadastrado
 - [Contribuição](#contribuição)
 - [Licença](#licença)
 
+
+
 ## Instalação
 
 Para executar esse projeto localmente, você precisará dos seguintes recursos:
@@ -35,6 +37,8 @@ Em seguida, navegue até o diretório do projeto e execute o seguinte comando no
 
 A API está disponível em `http://localhost:7101`
 
+
+
 ## Uso
 
 Esta API permite realizar as seguintes operações:
@@ -45,6 +49,8 @@ Esta API permite realizar as seguintes operações:
 - Atualizar dados de um usuário existente
 - Excluir um usuário
 
+
+
 ## Tarefas
 
 - `GET /api/user` - Retorna uma lista de todas os usuários. 
@@ -54,7 +60,9 @@ Esta API permite realizar as seguintes operações:
 - `PATCH /api/user/{id}` - Atualiza dados parciais de um usuário existente. 
 - `DELETE /api/user/{id}` - Exclui um usuário específico.
 
+
 ## Exemplo de Solicitação
+
 
 ##### Criar um novo usuário:
 
@@ -70,6 +78,7 @@ Esta API permite realizar as seguintes operações:
 }
 ```
 
+
 ##### Atualizar dados de usuário por inteiro:
 
 `PUT/api/user`
@@ -82,6 +91,7 @@ Esta API permite realizar as seguintes operações:
 	"Password": "senha123"
 }
 ```
+
 
 ##### Atualizar dados de usuário parcialmente:
 
@@ -97,6 +107,7 @@ Esta API permite realizar as seguintes operações:
 ]
 ```
 
+
 ## Contribuição
 
 Caso queira contribuir com os conteúdos ou sugerir modificações, siga as seguintes etapas:
@@ -109,9 +120,12 @@ Caso queira contribuir com os conteúdos ou sugerir modificações, siga as segu
 
 Além disso, você pode compartilhar e promover este projeto para contribuir com meu desenvolvimento.
 
+
 ## Licença
 
 Este projeto está licenciado sob a licença [MIT](https://opensource.org/licenses/MIT).
 
+
+# 
 
 Autoria por Mariana Matos.
