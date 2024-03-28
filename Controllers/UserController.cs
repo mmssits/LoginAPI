@@ -21,12 +21,23 @@ namespace LoginAPI.Controllers
             _mapper = mapper;
         }
 
+
         // Métodos Read - Get e GetId
+        /// <summary>
+        /// Lista todos os usuários existentes.
+        /// </summary>
+        /// <returns>Os usuários cadastrados na tabela</returns>
+
         [HttpGet]
         public IEnumerable<ReadUserDTO> RecuperaUsuarios() 
         {
             return _mapper.Map<List<ReadUserDTO>>(_userContext.Usuarios);
         }
+
+        /// <summary>
+        /// Lista um usuário específico através do CPF.
+        /// </summary>
+        /// <returns>Usuário específico por CPF</returns>
 
         [HttpGet("{cpf}")]
         public IActionResult RecuperaUsuarioPorID(string cpf)
@@ -41,6 +52,26 @@ namespace LoginAPI.Controllers
         }
 
         // Método Create - Post
+        /// <summary>
+        /// Cadastra um usuário na tabela de usuários, verificando se o CPF já não está em uso.
+        /// </summary>
+        /// <remarks>
+        /// Exemplo:
+        ///
+        ///     POST /LoginAPI
+        ///     {
+        ///        "Name": "Nome",
+	    ///        "LastName": "Sobrenome",
+	    ///        "CPF": "00000000000",
+	    ///        "Email": "nome@gmail.com",
+	    ///        "Password": "senha123"
+        ///     }
+        ///     
+        /// </remarks>
+        /// <returns>Um novo usuário criado</returns>
+        /// <response code = "201">Retorna o novo usuário cadastrado</response>
+        /// <response code = "400">Não foi possível cadastrar o usuário</response>
+        
         [HttpPost]
         public IActionResult CadastrarUser([FromBody] CreateUserDTO userDTO)
         {
@@ -59,6 +90,24 @@ namespace LoginAPI.Controllers
         }
 
         // Métodos Update - Put e Patch
+        /// <summary>
+        /// Realiza atualização dos dados de um usuário de maneira integral.
+        /// </summary>
+        /// <remarks>
+        /// Exemplo:
+        ///
+        ///     PUT /LoginAPI
+        ///     {
+        ///        "Name": "Nome",
+	    ///        "LastName": "Sobrenome",
+	    ///        "CPF": "00000000000",
+	    ///        "Password": "senha123"
+        ///     }
+        ///     
+        /// </remarks>
+        /// <response code = "201">Retorna o usuário atualizado</response>
+        /// <response code = "400">Não foi possível atualizar o usuário</response>
+
         [HttpPut("{id}")] // atualiza todas as informações contidados no UpdateDTO
         public IActionResult AtualizarUsuario(int id, [FromBody] UpdateUserDTO userDTO)
         {
@@ -72,6 +121,23 @@ namespace LoginAPI.Controllers
 
             return NoContent();
         }
+
+        /// <summary>
+        /// Realiza atualização dos dados de um usuário de maneira parcial.
+        /// </summary>
+        /// <remarks>
+        /// Exemplo:
+        ///
+        ///     PATCH /LoginAPI
+        ///     {
+        ///        "op": "replace",
+		///        "path": "/Name",
+		///        "value": "Nome Atualizado"
+        ///     }
+        ///     
+        /// </remarks>
+        /// <response code = "201">Retorna o usuário atualizado</response>
+        /// <response code = "400">Não foi possível atualizar o usuário</response>
 
         [HttpPatch("{id}")]
         public IActionResult AtualizarUsuarioParcial(int id, JsonPatchDocument<UpdateUserDTO> patchDocument)
@@ -94,6 +160,11 @@ namespace LoginAPI.Controllers
         }
 
         // Método Delete - Delete
+
+        /// <summary>
+        /// Realiza a exclusão de um usuário por meio do ID.
+        /// </summary>
+
         [HttpDelete("{id}")]
         public IActionResult ExcluirUsuario(int id) 
         {
@@ -107,6 +178,6 @@ namespace LoginAPI.Controllers
 
             return NoContent();
         }
-
+        
     }
 }
