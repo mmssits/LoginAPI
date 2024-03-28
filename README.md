@@ -6,8 +6,6 @@ Esta API permite gerencia o login de usuários, listando os usuários cadastrado
 
 - [Instalação](#instalação)
 - [Uso](#uso)
-- [Tarefas](#tarefas)
-- [Exemplos de Solicitação](#exemplos-de-solicitação)
 - [Contribuição](#contribuição)
 - [Licença](#licença)
 
@@ -38,7 +36,6 @@ Em seguida, navegue até o diretório do projeto e execute o seguinte comando no
 A API está disponível em `http://localhost:7101`
 
 
-
 ## Uso
 
 Esta API permite realizar as seguintes operações:
@@ -48,64 +45,6 @@ Esta API permite realizar as seguintes operações:
 - Obter detalhes de um usuário específico
 - Atualizar dados de um usuário existente
 - Excluir um usuário
-
-
-
-## Tarefas
-
-- `GET /api/user` - Retorna uma lista de todas os usuários. 
-- `GET /api/user/{id}` - Retorna os detalhes de um usuário específico. 
-- `POST /api/user` - Cria um novo usuário. 
-- `PUT /api/user/{id}` - Atualiza os dados de um usuário existente por inteiro.
-- `PATCH /api/user/{id}` - Atualiza dados parciais de um usuário existente. 
-- `DELETE /api/user/{id}` - Exclui um usuário específico.
-
-
-## Exemplo de Solicitação
-
-
-##### Criar um novo usuário:
-
-`POST/api/user`
-
-``` json
-{
-	"Name": "Nome",
-	"LastName": "Sobrenome",
-	"CPF": "00000000000",
-	"Email": "nome@gmail.com",
-	"Password": "senha123"
-}
-```
-
-
-##### Atualizar dados de usuário por inteiro:
-
-`PUT/api/user`
-
-``` json
-{
-	"Name": "Nome",
-	"LastName": "Sobrenome",
-	"CPF": "00000000000",
-	"Password": "senha123"
-}
-```
-
-
-##### Atualizar dados de usuário parcialmente:
-
-`POST/api/user`
-
-``` json
-[
-	{
-		"op": "replace",
-		"path": "/Name",
-		"value": "Nome Atualizado"
-	}
-]
-```
 
 
 ## Contribuição
